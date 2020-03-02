@@ -1,5 +1,4 @@
-import React from 'react';
-import MatchesListEntry from './MatchesListEntry.jsx';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const CloseButtonMatchesList = styled.div`
@@ -15,14 +14,136 @@ const MatchesListLayout = styled.div`
     background-color: white;
     border: solid 1px black;
 `
+const ContactLeft = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black;
+    width: 300px;
+    height: 300px;
+`
+const ContactRight = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black;
+    width: 300px;
+    height: 300px;
+`
+const ContactColumnsLayout = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const NavigationBar = styled.div`
+    border: solid 1px black;
+    width:  800px;
+    height: 50px;
+`
 
-let MatchesList = (props) => (
-    <MatchesListLayout>
-        <CloseButtonMatchesList onClick={props.handleCloseMatchesList}>
-            X Close
+class MatchesList extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    getContact(name) {
+        for (var i = 0; i < this.props.records.length; i++) {
+            if (this.props.records[i].fullname === name) {
+                return this.props.records[i];
+            }
+        }
+    }
+
+    getNotes(name) {
+        for (var i = 0; i < this.props.meetingNotes.length; i++) {
+            if (this.props.meetingNotes[i].NotesFormfullname === name) {
+                return this.props.meetingNotes[i];
+            }
+        }
+    }
+
+    render() {
+        var contactLeft = this.getContact(this.props.matches.contact1);
+        var contactRight = this.getContact(this.props.matches.contact2);
+        var contactLeftNotes = this.getNotes(this.props.matches.contact1);
+        var contactRightNotes = this.getNotes(this.props.matches.contact2);
+        return (
+            <MatchesListLayout>
+                <CloseButtonMatchesList onClick={this.props.handleCloseMatchesList}>
+                    X Close
         </CloseButtonMatchesList><br></br>
-        {props.matches.map((match, index) => <MatchesListEntry match={match} key={index} />)}
-    </MatchesListLayout>
-)
+        {this.props.matches.matchedKeywords.length} Matched Keyword(s): {JSON.stringify(this.props.matches.matchedKeywords)}
+                {/* Records: {JSON.stringify(this.props.records)} */}
+                <NavigationBar>
+                    <button onClick = {this.props.handlePreviousMatch}>Previous</button>
+                    <button onClick = {this.props.handleNextMatch}>Next</button>
+                </NavigationBar>
+                <ContactColumnsLayout>
+                    <ContactLeft>
+                        <div>
+                            Full Name: {contactLeft.fullname}
+                        </div><br></br>
+                        <div>
+                            Memo: {contactLeft.memo}
+                        </div><br></br>
+                        <div>
+                            Position: {contactLeft.position}
+                        </div><br></br>
+                        <div>
+                            Company: {contactLeft.company}
+                        </div><br></br>
+                        <div>
+                            Location: {contactLeft.location}
+                        </div><br></br>
+                        <div>
+                            Closeness: {contactLeft.closeness}
+                        </div><br></br>
+                        <div>
+                            Category: {contactLeft.category}
+                        </div><br></br>
+                        <div>
+                            Industry: {contactLeft.industry}
+                        </div><br></br>
+                        <div>
+                            Last Spoke: {contactLeft.lastspoke}
+                        </div><br></br>
+                        <div>
+                            Meeting Notes: {contactLeftNotes.NotesFormmeetingnotes}
+                        </div><br></br>
+                    </ContactLeft>
+                    <ContactRight>
+                        <div>
+                            Full Name: {contactRight.fullname}
+                        </div><br></br>
+                        <div>
+                            Memo: {contactRight.memo}
+                        </div><br></br>
+                        <div>
+                            Position: {contactRight.position}
+                        </div><br></br>
+                        <div>
+                            Company: {contactRight.company}
+                        </div><br></br>
+                        <div>
+                            Location: {contactRight.location}
+                        </div><br></br>
+                        <div>
+                            Closeness: {contactRight.closeness}
+                        </div><br></br>
+                        <div>
+                            Category: {contactRight.category}
+                        </div><br></br>
+                        <div>
+                            Industry: {contactRight.industry}
+                        </div><br></br>
+                        <div>
+                            Last Spoke: {contactRight.lastspoke}
+                        </div><br></br>
+                        <div>
+                            Meeting Notes: {contactRightNotes.NotesFormmeetingnotes}
+                        </div><br></br>
+                    </ContactRight>
+                </ContactColumnsLayout>
+            </MatchesListLayout>
+        )
+    }
+}
 
 export default MatchesList;

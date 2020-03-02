@@ -31,7 +31,7 @@ const NavigationBar = styled.div`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { records: [], meetingnotes: [], matches: [], contactFormModal: false, matchesModal: false, meetingNotesModal: false, currentEntry: 0, viewEntryModal: false };
+    this.state = { records: [], meetingnotes: [], matches: [], contactFormModal: false, matchesModal: false, meetingNotesModal: false, currentEntry: 0, viewEntryModal: false, currentMatch: 0 };
   }
 
   componentDidMount() {
@@ -172,6 +172,22 @@ class App extends Component {
     this.setState({ contactFormModal: false});
   }
 
+  handleNextMatch() {
+    if (this.state.currentMatch === this.state.matches.length - 1) {
+      return;
+    } else {
+      this.setState({currentMatch: this.state.currentMatch + 1})
+    }
+  }
+
+  handlePreviousMatch() {
+    if (this.state.currentMatch === 0) {
+      return;
+    } else {
+      this.setState({currentMatch: this.state.currentMatch - 1})
+    }
+  }
+
   render() {
     return (
       <AppPage>
@@ -189,7 +205,7 @@ class App extends Component {
         }
         {this.state.matchesModal ?
           (<MatchesModal>
-            <MatchesList matches={this.state.matches} handleCloseMatchesList = {this.handleCloseMatchesList.bind(this)}/>
+            <MatchesList meetingNotes = {this.state.meetingnotes} records = {this.state.records} matches={this.state.matches[this.state.currentMatch]} handlePreviousMatch = {this.handlePreviousMatch.bind(this)} handleNextMatch = {this.handleNextMatch.bind(this)} handleCloseMatchesList = {this.handleCloseMatchesList.bind(this)}/>
           </MatchesModal>) : null
         }
         {this.state.meetingNotesModal ?
