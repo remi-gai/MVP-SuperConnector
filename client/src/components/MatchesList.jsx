@@ -1,5 +1,6 @@
 import React from 'react';
 import MatchesListEntry from './MatchesListEntry.jsx';
+import styled from 'styled-components';
 
 let MatchesList = (props) => (
     <div>

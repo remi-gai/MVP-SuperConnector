@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import ContactForm from './ContactForm.jsx';
 import NotesForm from './NotesForm.jsx';
 import ContactList from './ContactList.jsx';
 import MatchesList from './MatchesList.jsx';
 import ContactFormModal from './ContactFormModal.jsx';
 import MeetingNotesModal from './MeetingNotesModal.jsx';
+import ViewEntry from './ViewEntry.jsx';
+import ViewEntryModal from './ViewEntryModal.jsx';
 import MatchesModal from './MatchesModal.jsx';
 import extractKeywords from './stopwordsRemoval.js';
 import dummyContacts from './dummyData.js';
 import generateMatches from './generateMatches.js';
 
+const AppPage = styled.div`
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  flex-direction: column;
+`
+
+const NavigationBar = styled.div`
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  flex-direction: row;
+  height: 50px;
+`
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { records: [], meetingnotes: [], matches: [], contactFormModal: false, matchesModal: false, meetingNotesModal: false };
+    this.state = { records: [], meetingnotes: [], matches: [], contactFormModal: false, matchesModal: false, meetingNotesModal: false, currentEntry: 0, viewEntryModal: false };
   }
 
   componentDidMount() {
@@ -134,14 +152,20 @@ class App extends Component {
     this.setState({ meetingNotesModal: !this.state.meetingNotesModal });
   }
 
+  handleSelectEntry(entry) {
+    this.setState({ viewEntryModal: true, currentEntry: entry });
+  }
+
   render() {
     return (
-      <div>
-        <button onClick={this.handleContactFormModal.bind(this)}>Contact Form</button>
-        <button onClick={this.generateMatches.bind(this)}>Generate Matches</button>
-        <button onClick={this.handleMatchesModal.bind(this)}>View Matches</button>
-        <button onClick={this.handleMeetingNotesModal.bind(this)}>Create Meeting Notes</button>
-        <ContactList contacts={this.state.records} />
+      <AppPage>
+        <NavigationBar>
+          <button onClick={this.handleContactFormModal.bind(this)}>Contact Form</button>
+          <button onClick={this.generateMatches.bind(this)}>Generate Matches</button>
+          <button onClick={this.handleMatchesModal.bind(this)}>View Matches</button>
+          <button onClick={this.handleMeetingNotesModal.bind(this)}>Create Meeting Notes</button>
+        </NavigationBar>
+        <ContactList contacts={this.state.records} handleSelectEntry = {this.handleSelectEntry.bind(this)} />
         {this.state.contactFormModal ?
           (<ContactFormModal>
             <ContactForm handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
@@ -157,7 +181,12 @@ class App extends Component {
             <NotesForm handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
           </MeetingNotesModal>) : null
         }
-      </div>
+        {this.state.viewEntryModal ?
+          (<ViewEntryModal>
+            <ViewEntry currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} />
+          </ViewEntryModal>) : null
+        }
+      </AppPage>
     );
   }
 }

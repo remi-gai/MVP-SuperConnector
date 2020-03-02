@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-const matchesRoot = document.getElementById('app-matches');
+const viewEntryRoot = document.getElementById('app-entry');
 
-class MatchesModal extends Component {
+class ViewEntryModal extends Component {
     constructor(props) {
         super(props);
         this.background = React.createRef();
@@ -21,9 +21,9 @@ class MatchesModal extends Component {
             <div onClick={(e) => this.handleClickOutside}>
                 {this.props.children}
             </div>,
-            matchesRoot
+            viewEntryRoot
         );
     }
 }
 
-export default MatchesModal;
+export default ViewEntryModal;

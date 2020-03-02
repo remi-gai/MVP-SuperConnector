@@ -1,7 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Entry = styled.div`
+   /* display: flex; */
+   /* flex-direction: row; */
+   border: solid 1px black;
+`
 
 let ContactListEntry = (props) => (
-    <div>
+    <Entry onClick = {() => props.handleSelectEntry(props.index)}>
         <div>
             Full Name: {props.contact.fullname}
         </div>
@@ -29,7 +36,7 @@ let ContactListEntry = (props) => (
         <div>
            Keywords: {JSON.stringify(props.contact.keywords)}
         </div><br></br>
-    </div>
+    </Entry>
 )
 
 export default ContactListEntry;
