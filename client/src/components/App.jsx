@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled, { ThemeConsumer } from 'styled-components';
 import ContactForm from './ContactForm.jsx';
 import NotesForm from './NotesForm.jsx';
-import ContactList from './ContactList.jsx';
 import MatchesList from './MatchesList.jsx';
 import ContactFormModal from './ContactFormModal.jsx';
 import MeetingNotesModal from './MeetingNotesModal.jsx';
@@ -12,20 +11,125 @@ import MatchesModal from './MatchesModal.jsx';
 import extractKeywords from './stopwordsRemoval.js';
 import dummyContacts from './dummyData.js';
 import generateMatches from './generateMatches.js';
+import FullNameEntry from './Columns/FullNameEntry.jsx';
+import MemoEntry from './Columns/MemoEntry.jsx';
+import CompanyEntry from './Columns/CompanyEntry.jsx';
+import PositionEntry from './Columns/PositionEntry.jsx';
+import ClosenessEntry from './Columns/ClosenessEntry.jsx';
+import LastSpokeEntry from './Columns/LastSpokeEntry.jsx';
+import IndustryEntry from './Columns/IndustryEntry.jsx';
+import LocationEntry from './Columns/LocationEntry.jsx';
+import CategoryEntry from './Columns/CategoryEntry.jsx';
+import DetailsEntry from './Columns/DetailsEntry.jsx';
+
+document.body.style.backgroundColor = "#EEEEEE";
+document.body.style.fontFamily = "Helvetica Neue, Helvetica, Arial, sans-serif";
+document.body.style.fontSize = "medium";
 
 const AppPage = styled.div`
   display: flex;
   justify-content: center;
-  border: 1px solid black;
   flex-direction: column;
 `
 
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  height: 75px;
+  background-color: #2D4053;
+`
 const NavigationBar = styled.div`
   display: flex;
-  justify-content: space-around;
-  border: 1px solid black;
+  justify-content: flex-start;
+  align-items: center;
   flex-direction: row;
-  height: 50px;
+  background-color: white;
+  height: 40px;
+`
+
+const ContactPage = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: white;
+`
+const DetailsColumn = styled.div`
+  border: solid 1px black;
+`
+
+const FullNameColumn = styled.div`
+  border: solid 1px black;
+`
+
+const MemoColumn = styled.div`
+  border: solid 1px black;
+`
+
+const CompanyColumn = styled.div`
+  border: solid 1px black;
+`
+
+const PositionColumn = styled.div`
+  border: solid 1px black;
+`
+
+const ClosenessColumn = styled.div`
+  border: solid 1px black;
+`
+
+const CategoryColumn = styled.div`
+  border: solid 1px black;
+`
+
+const IndustryColumn = styled.div`
+  border: solid 1px black;
+`
+const LocationColumn = styled.div`
+  border: solid 1px black;
+`
+
+const LastSpokeColumn = styled.div`
+  border: solid 1px black;
+`
+
+const ColumnHeader = styled.div`
+  font-weight: bold;
+  background-color: #EEEE;
+`
+
+const ContactsBox = styled.div`
+  background-color: white;
+  width: 90px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px 4px 0px 0px;
+`
+
+const Separator = styled.div`
+  display: flex;
+  align-items: flex-end;
+  background-color: #31CE7B;
+  height: 40px;
+`
+const Button = styled.div`
+  display: flex;  
+  align-items: center;
+  background-color: #18AA8E;
+  color: white;
+  height: 20px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0,0,0,.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 12px 0 12px;
+  font-size: .750rem;
+  border-radius: 4px;
+  margin: 5px;
+  cursor: pointer;
 `
 
 class App extends Component {
@@ -157,26 +261,26 @@ class App extends Component {
   }
 
   handleCloseViewEntry() {
-    this.setState({ viewEntryModal: false});
+    this.setState({ viewEntryModal: false });
   }
 
   handleCloseMatchesList() {
-    this.setState({ matchesModal: false});
+    this.setState({ matchesModal: false });
   }
 
   handleCloseMeetingNotes() {
-    this.setState({ meetingNotesModal: false});
+    this.setState({ meetingNotesModal: false });
   }
 
   handleCloseContactForm() {
-    this.setState({ contactFormModal: false});
+    this.setState({ contactFormModal: false });
   }
 
   handleNextMatch() {
     if (this.state.currentMatch === this.state.matches.length - 1) {
       return;
     } else {
-      this.setState({currentMatch: this.state.currentMatch + 1})
+      this.setState({ currentMatch: this.state.currentMatch + 1 })
     }
   }
 
@@ -184,38 +288,83 @@ class App extends Component {
     if (this.state.currentMatch === 0) {
       return;
     } else {
-      this.setState({currentMatch: this.state.currentMatch - 1})
+      this.setState({ currentMatch: this.state.currentMatch - 1 })
     }
   }
 
   render() {
     return (
       <AppPage>
+        <Header>Super Connector</Header>
+        <Separator>
+          <ContactsBox>Contacts</ContactsBox>
+        </Separator>
         <NavigationBar>
-          <button onClick={this.handleContactFormModal.bind(this)}>Contact Form</button>
-          <button onClick={this.generateMatches.bind(this)}>Generate Matches</button>
-          <button onClick={this.handleMatchesModal.bind(this)}>View Matches</button>
-          <button onClick={this.handleMeetingNotesModal.bind(this)}>Create Meeting Notes</button>
+          <Button onClick={this.handleContactFormModal.bind(this)}>Contact +</Button>
+          <Button onClick={this.handleMeetingNotesModal.bind(this)}>Notes +</Button>
+          <Button onClick={this.generateMatches.bind(this)}>Match!</Button>
+          <Button onClick={this.handleMatchesModal.bind(this)}>View</Button>
         </NavigationBar>
-        <ContactList contacts={this.state.records} handleSelectEntry = {this.handleSelectEntry.bind(this)} />
+        <ContactPage>
+          <DetailsColumn>
+            <ColumnHeader>Details</ColumnHeader>
+            {this.state.records.map((record, index) => <DetailsEntry index={index} key={index} handleSelectEntry={this.handleSelectEntry.bind(this)} />)}
+          </DetailsColumn >
+          <FullNameColumn>
+            <ColumnHeader>Full Name</ColumnHeader>
+            {this.state.records.map((record, index) => <FullNameEntry fullname={record.fullname} key={index} />)}
+          </FullNameColumn>
+          <MemoColumn>
+            <ColumnHeader>Memo</ColumnHeader>
+            {this.state.records.map((record, index) => <MemoEntry memo={record.memo} key={index} />)}
+          </MemoColumn>
+          <CompanyColumn>
+            <ColumnHeader>Company</ColumnHeader>
+            {this.state.records.map((record, index) => <CompanyEntry company={record.company} key={index} />)}
+          </CompanyColumn>
+          <PositionColumn>
+            <ColumnHeader>Position</ColumnHeader>
+            {this.state.records.map((record, index) => <PositionEntry position={record.position} key={index} />)}
+          </PositionColumn>
+          <ClosenessColumn>
+            <ColumnHeader>Closeness</ColumnHeader>
+            {this.state.records.map((record, index) => <ClosenessEntry closeness={record.closeness} key={index} />)}
+          </ClosenessColumn>
+          <CategoryColumn>
+            <ColumnHeader>Category</ColumnHeader>
+            {this.state.records.map((record, index) => <CategoryEntry category={record.category} key={index} />)}
+          </CategoryColumn>
+          <IndustryColumn>
+            <ColumnHeader>Industry</ColumnHeader>
+            {this.state.records.map((record, index) => <IndustryEntry industry={record.industry} key={index} />)}
+          </IndustryColumn>
+          <LocationColumn>
+            <ColumnHeader>Location</ColumnHeader>
+            {this.state.records.map((record, index) => <LocationEntry location={record.location} key={index} />)}
+          </LocationColumn>
+          <LastSpokeColumn>
+            <ColumnHeader>Last Spoke</ColumnHeader>
+            {this.state.records.map((record, index) => <LastSpokeEntry lastspoke={record.lastspoke} key={index} />)}
+          </LastSpokeColumn>
+        </ContactPage>
         {this.state.contactFormModal ?
-          (<ContactFormModal handleCloseContactForm = {this.handleCloseContactForm.bind(this)}>
-            <ContactForm handleCloseContactForm = {this.handleCloseContactForm.bind(this)} handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
+          (<ContactFormModal handleCloseContactForm={this.handleCloseContactForm.bind(this)}>
+            <ContactForm handleCloseContactForm={this.handleCloseContactForm.bind(this)} handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
           </ContactFormModal>) : null
         }
         {this.state.matchesModal ?
           (<MatchesModal>
-            <MatchesList meetingNotes = {this.state.meetingnotes} records = {this.state.records} matches={this.state.matches[this.state.currentMatch]} handlePreviousMatch = {this.handlePreviousMatch.bind(this)} handleNextMatch = {this.handleNextMatch.bind(this)} handleCloseMatchesList = {this.handleCloseMatchesList.bind(this)}/>
+            <MatchesList meetingNotes={this.state.meetingnotes} records={this.state.records} matches={this.state.matches[this.state.currentMatch]} handlePreviousMatch={this.handlePreviousMatch.bind(this)} handleNextMatch={this.handleNextMatch.bind(this)} handleCloseMatchesList={this.handleCloseMatchesList.bind(this)} />
           </MatchesModal>) : null
         }
         {this.state.meetingNotesModal ?
           (<MeetingNotesModal>
-            <NotesForm handleCloseMeetingNotes = {this.handleCloseMeetingNotes.bind(this)} handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
+            <NotesForm handleCloseMeetingNotes={this.handleCloseMeetingNotes.bind(this)} handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
           </MeetingNotesModal>) : null
         }
         {this.state.viewEntryModal ?
           (<ViewEntryModal>
-            <ViewEntry currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} handleCloseViewEntry = {this.handleCloseViewEntry.bind(this)}/>
+            <ViewEntry currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} handleCloseViewEntry={this.handleCloseViewEntry.bind(this)} />
           </ViewEntryModal>) : null
         }
       </AppPage>
