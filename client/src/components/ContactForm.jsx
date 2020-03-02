@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const CloseButtonContactForm = styled.div`
+    cursor: pointer;
+`
+
 let ContactForm = (props) => (
   <div>
+    <CloseButtonContactForm onClick={props.handleCloseContactForm}>
+      X Close
+    </CloseButtonContactForm><br></br>
     <label>
       Full Name:
           <input type="text" onChange={props.handleNameChange} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeConsumer } from 'styled-components';
 import ContactForm from './ContactForm.jsx';
 import NotesForm from './NotesForm.jsx';
 import ContactList from './ContactList.jsx';
@@ -156,6 +156,22 @@ class App extends Component {
     this.setState({ viewEntryModal: true, currentEntry: entry });
   }
 
+  handleCloseViewEntry() {
+    this.setState({ viewEntryModal: false});
+  }
+
+  handleCloseMatchesList() {
+    this.setState({ matchesModal: false});
+  }
+
+  handleCloseMeetingNotes() {
+    this.setState({ meetingNotesModal: false});
+  }
+
+  handleCloseContactForm() {
+    this.setState({ contactFormModal: false});
+  }
+
   render() {
     return (
       <AppPage>
@@ -168,22 +184,22 @@ class App extends Component {
         <ContactList contacts={this.state.records} handleSelectEntry = {this.handleSelectEntry.bind(this)} />
         {this.state.contactFormModal ?
           (<ContactFormModal>
-            <ContactForm handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
+            <ContactForm handleCloseContactForm = {this.handleCloseContactForm.bind(this)} handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
           </ContactFormModal>) : null
         }
         {this.state.matchesModal ?
           (<MatchesModal>
-            <MatchesList matches={this.state.matches} />
+            <MatchesList matches={this.state.matches} handleCloseMatchesList = {this.handleCloseMatchesList.bind(this)}/>
           </MatchesModal>) : null
         }
         {this.state.meetingNotesModal ?
           (<MeetingNotesModal>
-            <NotesForm handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
+            <NotesForm handleCloseMeetingNotes = {this.handleCloseMeetingNotes.bind(this)} handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
           </MeetingNotesModal>) : null
         }
         {this.state.viewEntryModal ?
           (<ViewEntryModal>
-            <ViewEntry currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} />
+            <ViewEntry currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} handleCloseViewEntry = {this.handleCloseViewEntry.bind(this)}/>
           </ViewEntryModal>) : null
         }
       </AppPage>

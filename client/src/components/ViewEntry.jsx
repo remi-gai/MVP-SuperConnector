@@ -1,7 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const CloseButtonViewEntry = styled.div`
+    cursor: pointer;
+`
 
 let ViewEntry = (props) => (
     <div>
+        <CloseButtonViewEntry onClick={props.handleCloseViewEntry}>
+            X Close
+        </CloseButtonViewEntry><br></br>
         <div>
             Full Name: {props.currentEntry.fullname}
         </div><br></br>
