@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-const contactFormRoot = document.getElementById('app-contact-form');
+const meetingNotesRoot = document.getElementById('app-meeting-notes');
 
-class ContactFormModal extends Component {
+class MeetingNotesModal extends Component {
     constructor(props) {
         super(props);
         this.background = React.createRef();
@@ -20,9 +20,9 @@ class ContactFormModal extends Component {
             <div onClick={(e) => this.handleClickOutside}>
                 {this.props.children}
             </div>,
-            contactFormRoot
+            meetingNotesRoot
         );
     }
 }
 
-export default ContactFormModal;
+export default MeetingNotesModal;

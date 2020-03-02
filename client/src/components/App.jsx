@@ -3,6 +3,9 @@ import ContactForm from './ContactForm.jsx';
 import NotesForm from './NotesForm.jsx';
 import ContactList from './ContactList.jsx';
 import MatchesList from './MatchesList.jsx';
+import ContactFormModal from './ContactFormModal.jsx';
+import MeetingNotesModal from './MeetingNotesModal.jsx';
+import MatchesModal from './MatchesModal.jsx';
 import extractKeywords from './stopwordsRemoval.js';
 import dummyContacts from './dummyData.js';
 import generateMatches from './generateMatches.js';
@@ -10,7 +13,7 @@ import generateMatches from './generateMatches.js';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { records: [], meetingnotes: [], matches: [], contactFormModal: false };
+    this.state = { records: [], meetingnotes: [], matches: [], contactFormModal: false, matchesModal: false, meetingNotesModal: false };
   }
 
   componentDidMount() {
@@ -31,7 +34,8 @@ class App extends Component {
   }
 
   generateMatches() {
-    var matches = this.state.matches.slice();
+    this.generateKeyWords();
+    var matches = [];
     var pairs = [];
     for (var i = 0; i < this.state.records.length; i++) {
       for (var j = 0; j < this.state.records.length; j++) {
@@ -100,13 +104,13 @@ class App extends Component {
 
   handleContactFormSubmit() {
     var oldRecords = this.state.records;
-    oldRecords.push({ fullname: this.state.fullname, position: this.state.position, company: this.state.company, meetingnotes: this.state.meetingnotes, location: this.state.location, closeness: this.state.closeness, category: this.state.cateogry, industry: this.state.industry, lastspoke: this.state.lastspoke });
+    oldRecords.push({ fullname: this.state.fullname, position: this.state.position, company: this.state.company, location: this.state.location, closeness: this.state.closeness, category: this.state.cateogry, industry: this.state.industry, lastspoke: this.state.lastspoke, keywords: [], memo: this.state.memo });
     this.setState({ records: oldRecords });
   }
 
   handleNotesFormSubmit() {
     var oldMeetingNotes = this.state.meetingnotes;
-    oldMeetingNotes.push({ fullname: this.state.NotesFormfullname, meetingnotes: this.state.NotesFormmeetingnotes });
+    oldMeetingNotes.push({ NotesFormfullname: this.state.NotesFormfullname, NotesFormmeetingnotes: this.state.NotesFormmeetingnotes });
     this.setState({ meetingnotes: oldMeetingNotes });
   }
 
@@ -122,16 +126,37 @@ class App extends Component {
     this.setState({ contactFormModal: !this.state.contactFormModal });
   }
 
+  handleMatchesModal() {
+    this.setState({ matchesModal: !this.state.matchesModal });
+  }
+
+  handleMeetingNotesModal() {
+    this.setState({ meetingNotesModal: !this.state.meetingNotesModal });
+  }
+
   render() {
     return (
       <div>
-        <ContactFormModal>
-          <ContactForm handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
-        </ContactFormModal>
-        <NotesForm handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
-        <MatchesList matches={this.state.matches} />
-        <ContactList contacts={this.state.records} />
+        <button onClick={this.handleContactFormModal.bind(this)}>Contact Form</button>
         <button onClick={this.generateMatches.bind(this)}>Generate Matches</button>
+        <button onClick={this.handleMatchesModal.bind(this)}>View Matches</button>
+        <button onClick={this.handleMeetingNotesModal.bind(this)}>Create Meeting Notes</button>
+        <ContactList contacts={this.state.records} />
+        {this.state.contactFormModal ?
+          (<ContactFormModal>
+            <ContactForm handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
+          </ContactFormModal>) : null
+        }
+        {this.state.matchesModal ?
+          (<MatchesModal>
+            <MatchesList matches={this.state.matches} />
+          </MatchesModal>) : null
+        }
+        {this.state.meetingNotesModal ?
+          (<MeetingNotesModal>
+            <NotesForm handleNotesFormSubmit={this.handleNotesFormSubmit.bind(this)} handleNameChangeNotesForm={this.handleNameChangeNotesForm.bind(this)} handleMeetingNotesChangeNotesForm={this.handleMeetingNotesChangeNotesForm.bind(this)} />
+          </MeetingNotesModal>) : null
+        }
       </div>
     );
   }
