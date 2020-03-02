@@ -13,29 +13,35 @@ const MatchesListLayout = styled.div`
     height: 700px;
     background-color: white;
     border: solid 1px black;
+    overflow-y: scroll;
 `
 const ContactLeft = styled.div`
     display: flex;
     flex-direction: column;
     border: solid 1px black;
     width: 300px;
-    height: 300px;
 `
 const ContactRight = styled.div`
     display: flex;
     flex-direction: column;
     border: solid 1px black;
     width: 300px;
-    height: 300px;
 `
 const ContactColumnsLayout = styled.div`
     display: flex;
     flex-direction: row;
 `
 const NavigationBar = styled.div`
+    display: flex;
+    justify-content: space-evenly;
     border: solid 1px black;
     width:  800px;
     height: 50px;
+`
+
+const Bold = styled.span`
+    font-weight: bold;
+    background-color: #FFFF00;
 `
 
 class MatchesList extends Component {
@@ -64,13 +70,14 @@ class MatchesList extends Component {
         var contactRight = this.getContact(this.props.matches.contact2);
         var contactLeftNotes = this.getNotes(this.props.matches.contact1);
         var contactRightNotes = this.getNotes(this.props.matches.contact2);
+        var splitContactLeftNotes = contactLeftNotes.NotesFormmeetingnotes.split(" ");
+        var splitContactRightNotes = contactRightNotes.NotesFormmeetingnotes.split(" ");
         return (
             <MatchesListLayout>
                 <CloseButtonMatchesList onClick={this.props.handleCloseMatchesList}>
                     X Close
         </CloseButtonMatchesList><br></br>
         {this.props.matches.matchedKeywords.length} Matched Keyword(s): {JSON.stringify(this.props.matches.matchedKeywords)}
-                {/* Records: {JSON.stringify(this.props.records)} */}
                 <NavigationBar>
                     <button onClick = {this.props.handlePreviousMatch}>Previous</button>
                     <button onClick = {this.props.handleNextMatch}>Next</button>
@@ -105,7 +112,20 @@ class MatchesList extends Component {
                             Last Spoke: {contactLeft.lastspoke}
                         </div><br></br>
                         <div>
-                            Meeting Notes: {contactLeftNotes.NotesFormmeetingnotes}
+                            Meeting Notes: {
+                            splitContactLeftNotes.map(word => {
+                                if (word.includes(".") || word.includes(",") || word.includes("?") || word.includes("!") || word.includes("(") || word.includes(")") || word.includes(":")) {
+                                    var wordWithoutPunctuation = word.substr(0, word.length - 1);
+                                    if (this.props.matches.matchedKeywords.indexOf(wordWithoutPunctuation.toLowerCase()) !== -1) {
+                                        return <span><Bold>{wordWithoutPunctuation}</Bold>{word[word.length -1]} </span>;
+                                    }
+                                } else if (this.props.matches.matchedKeywords.indexOf(word.toLowerCase()) !== -1) {
+                                    return <Bold>{word} </Bold>
+                                } else {
+                                    return word + ' ';
+                                }
+                            })
+                            }
                         </div><br></br>
                     </ContactLeft>
                     <ContactRight>
@@ -137,7 +157,20 @@ class MatchesList extends Component {
                             Last Spoke: {contactRight.lastspoke}
                         </div><br></br>
                         <div>
-                            Meeting Notes: {contactRightNotes.NotesFormmeetingnotes}
+                            Meeting Notes: {
+                            splitContactRightNotes.map(word => {
+                                if (word.includes(".") || word.includes(",") || word.includes("?") || word.includes("!") || word.includes("(") || word.includes(")") || word.includes(":")) {
+                                    var wordWithoutPunctuation = word.substr(0, word.length - 1);
+                                    if (this.props.matches.matchedKeywords.indexOf(wordWithoutPunctuation.toLowerCase()) !== -1) {
+                                        return <span><Bold>{wordWithoutPunctuation}</Bold>{word[word.length -1]} </span>;
+                                    }
+                                } else if (this.props.matches.matchedKeywords.indexOf(word.toLowerCase()) !== -1) {
+                                    return <Bold>{word} </Bold>
+                                } else {
+                                    return word + ' ';
+                                }
+                            })
+                            }
                         </div><br></br>
                     </ContactRight>
                 </ContactColumnsLayout>
