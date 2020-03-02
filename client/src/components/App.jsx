@@ -183,7 +183,7 @@ class App extends Component {
         </NavigationBar>
         <ContactList contacts={this.state.records} handleSelectEntry = {this.handleSelectEntry.bind(this)} />
         {this.state.contactFormModal ?
-          (<ContactFormModal>
+          (<ContactFormModal handleCloseContactForm = {this.handleCloseContactForm.bind(this)}>
             <ContactForm handleCloseContactForm = {this.handleCloseContactForm.bind(this)} handleNameChange={this.handleNameChange.bind(this)} handleMemoChange={this.handleMemoChange.bind(this)} handlePositionChange={this.handlePositionChange.bind(this)} handleCompanyChange={this.handleCompanyChange.bind(this)} handleMeetingNotesChange={this.handleMeetingNotesChange.bind(this)} handleLocationChange={this.handleLocationChange.bind(this)} handleClosenessChange={this.handleClosenessChange.bind(this)} handleCategoryChange={this.handleCategoryChange.bind(this)} handleIndustryChange={this.handleIndustryChange.bind(this)} handleLastSpokeChange={this.handleLastSpokeChange.bind(this)} handleContactFormSubmit={this.handleContactFormSubmit.bind(this)} />
           </ContactFormModal>) : null
         }

@@ -3,6 +3,20 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 const viewEntryRoot = document.getElementById('app-entry');
 
+const ViewEntryModalBackground = styled.div`
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 50;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+`
+
 class ViewEntryModal extends Component {
     constructor(props) {
         super(props);
@@ -18,9 +32,9 @@ class ViewEntryModal extends Component {
 
     render() {
         return ReactDOM.createPortal(
-            <div onClick={(e) => this.handleClickOutside}>
+            <ViewEntryModalBackground onClick={(e) => this.handleClickOutside}>
                 {this.props.children}
-            </div>,
+            </ViewEntryModalBackground>,
             viewEntryRoot
         );
     }

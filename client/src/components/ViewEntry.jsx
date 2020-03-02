@@ -5,8 +5,19 @@ const CloseButtonViewEntry = styled.div`
     cursor: pointer;
 `
 
+const ViewEntryLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border: solid 1px black;
+`
+
 let ViewEntry = (props) => (
-    <div>
+    <ViewEntryLayout>
         <CloseButtonViewEntry onClick={props.handleCloseViewEntry}>
             X Close
         </CloseButtonViewEntry><br></br>
@@ -37,7 +48,7 @@ let ViewEntry = (props) => (
         <div>
             Last Spoke: {props.currentEntry.lastspoke}
         </div><br></br>
-    </div>
+    </ViewEntryLayout>
 );
 
 export default ViewEntry;

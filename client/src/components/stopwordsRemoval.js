@@ -13,7 +13,6 @@ var extractKeywords = (input) => {
     for (var j = 0; j < sentence.length; j++) {
         if (punctuations.indexOf(sentence[j]) !== -1) {
             sentence = sentence.substr(0, j) + ' ' + sentence.substr(j + 1, sentence.length);
-            console.log(sentence);
         }
     }
     var arraySentence = sentence.split(' ');

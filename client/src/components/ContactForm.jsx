@@ -5,8 +5,19 @@ const CloseButtonContactForm = styled.div`
     cursor: pointer;
 `
 
+const ContactFormLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  border: solid 1px black;
+`
+
 let ContactForm = (props) => (
-  <div>
+  <ContactFormLayout>
     <CloseButtonContactForm onClick={props.handleCloseContactForm}>
       X Close
     </CloseButtonContactForm><br></br>
@@ -47,7 +58,7 @@ let ContactForm = (props) => (
           <input type="text" onChange={props.handleLastSpokeChange} />
     </label><br></br>
     <button onClick={props.handleContactFormSubmit}>Save</button>
-  </div>
+  </ContactFormLayout>
 )
 
 export default ContactForm;
