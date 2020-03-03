@@ -60,6 +60,7 @@ const ContactPage = styled.div`
   flex-direction: row;
   justify-content: space-between;
   background-color: white;
+  border-left: solid 1px hsl(202,10%,88%);
 `
 const DetailsColumn = styled.div`
   border-right: solid 1px hsl(202,10%,88%);
@@ -128,6 +129,8 @@ const ColumnHeader = styled.div`
   padding: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-top: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 const ColumnHeaderExpand = styled.div`
   font-weight: bold;
@@ -136,6 +139,8 @@ const ColumnHeaderExpand = styled.div`
   padding: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
+  border-top: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const ContactsBox = styled.div`
@@ -145,7 +150,9 @@ const ContactsBox = styled.div`
   font-weight: bold;
   display: flex;
   justify-content: center;
+  align-items: center;
   border-radius: 4px 4px 0px 0px;
+  height: 25px;
 `
 
 const Separator = styled.div`
@@ -175,8 +182,9 @@ const Button = styled.div`
 `
 
 const MatchCount = styled.div`
-  background-color: #0091FF;
-  color: white;
+
+  background-color: ${props => props.matchCount > 0 ? '#0091FF' : '#EEEE'};
+  color: ${props => props.matchCount > 0 ? 'white' : 'black'};
   border-radius: 10px;
   padding: 0 10px 0 10px;
   font-size: .750rem;
@@ -189,6 +197,10 @@ const MatchCount = styled.div`
   width: 60px;
   margin: 5px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `
 
 const MatchControls = styled.div`
@@ -367,7 +379,7 @@ class App extends Component {
         </Separator>
         <NavigationBar>
           <MatchControls>
-            <MatchCount onClick={this.handleMatchesModal.bind(this)}>
+            <MatchCount onClick={this.handleMatchesModal.bind(this)} matchCount = {this.state.matches.length}>
               {this.state.matches.length + ' ' + "Matches"}
             </MatchCount>
             <Button onClick={this.generateMatches.bind(this)} style={{backgroundColor: '#FA6400'}}>Match!</Button>
@@ -399,7 +411,7 @@ class App extends Component {
             {this.state.records.map((record, index) => <PositionEntry position={record.position} key={index} />)}
           </PositionColumn>
           <ClosenessColumn>
-            <ColumnHeader>Closeness</ColumnHeader>
+            <ColumnHeader>Temperature</ColumnHeader>
             {this.state.records.map((record, index) => <ClosenessEntry closeness={record.closeness} key={index} />)}
           </ClosenessColumn>
           <CategoryColumn>
@@ -436,7 +448,7 @@ class App extends Component {
         }
         {this.state.viewEntryModal ?
           (<ViewEntryModal>
-            <ViewEntry currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} handleCloseViewEntry={this.handleCloseViewEntry.bind(this)} />
+            <ViewEntry meetingNotes={this.state.meetingnotes} currentEntry={this.state.records[this.state.currentEntry]} handleSelectEntry={this.handleSelectEntry.bind(this)} handleCloseViewEntry={this.handleCloseViewEntry.bind(this)} />
           </ViewEntryModal>) : null
         }
       </AppPage>

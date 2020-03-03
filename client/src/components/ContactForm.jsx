@@ -6,18 +6,20 @@ const CloseButtonContactForm = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    margin-top: -40px;
+    margin-right: 25px;
 `
 
 const ContactFormLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 800px;
-  height: 800px;
-  background-color: rgba(238, 238, 238, 1);
+  justify-content: center;
+  width: 600px;
+  height: 700px;
+  background-color: white;
   opacity: 1;
   color: hsl(0,0%,30%);
-  /* border: solid 1px black; */
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   border-radius: 10px;
   overflow-y: scroll;
@@ -25,8 +27,14 @@ const ContactFormLayout = styled.div`
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 400px;
+  align-items: center;
+  justify-content: center;
+  width: 440px;
+  color: hsl(0,0%,30%);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border-radius: 10px;
+  background-color: rgba(238, 238, 238, 1);
+  height: 600px;
 `
 const InputFormatting = styled.input`
   border-radius: 3px;
@@ -43,7 +51,7 @@ const TextAreaFormatting = styled.textarea`
   width: 400px;
   font-size: 13px;
   cursor: text;
-  height: 120px;
+  height: 80px;
 `
 
 const Title = styled.div`
@@ -66,7 +74,7 @@ const Button = styled.div`
   padding: 0 12px 0 12px;
   font-size: .750rem;
   border-radius: 4px;
-  margin: 5px;
+  margin-top: 10px;
   cursor: pointer;
 
   &:hover {
@@ -74,7 +82,13 @@ const Button = styled.div`
   }
 `
 const Field = styled.div`
-  margin: 6px;
+`
+
+const FieldLayout = styled.div`
+  width: 400px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 `
 const IconLandingPage = styled.input`
   width: 20px;
@@ -83,77 +97,121 @@ const IconLandingPage = styled.input`
   opacity: 0.8;
 `
 
+const Controls = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+`
+
 let ContactForm = (props) => (
   <ContactFormLayout>
     <CloseButtonContactForm onClick={props.handleCloseContactForm}>
-      X
+      x
     </CloseButtonContactForm><br></br>
-    <div>NEW CONTACT</div><br></br>
     <FormContainer>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
-        Full Name:
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
+          Full Name:
       </Title>
-      <Field>
-        <InputFormatting type="text" onChange={props.handleNameChange}/>
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Memo.svg" style={{opacity: 0.5}}></IconLandingPage>
-        Memo:
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
+          <InputFormatting type="text" onChange={props.handleNameChange} />
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Memo.svg" style={{ opacity: 0.5 }}></IconLandingPage>
+          Memo:
       </Title>
-      <Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
           <TextAreaFormatting onChange={props.handleMemoChange} />
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Position.svg"></IconLandingPage>
-        Position:
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Position.svg"></IconLandingPage>
+          Position:
       </Title>
-      <Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
           <InputFormatting type="text" onChange={props.handlePositionChange} />
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Company.svg"></IconLandingPage>
-        Company:
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Company.svg"></IconLandingPage>
+          Company:
       </Title>
-      <Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
           <InputFormatting type="text" onChange={props.handleCompanyChange} />
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Location.svg"></IconLandingPage>
-        Location:
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Location.svg"></IconLandingPage>
+          Location:
       </Title>
-      <Field>
+        <FieldLayout>
+        </FieldLayout>
+        <Field>
           <InputFormatting type="text" onChange={props.handleLocationChange} />
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Temperature.svg" style={{opacity: 0.5}}></IconLandingPage>
-        Temperature:
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Temperature.svg" style={{ opacity: 0.5 }}></IconLandingPage>
+          Temperature:
       </Title>
-      <Field>
-          <InputFormatting type="text" onChange={props.handleClosenessChange} style={{opacity: 0.5}}/>
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Category.svg" style={{opacity: 0.5}}></IconLandingPage>
-        Category:
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
+          <InputFormatting type="text" onChange={props.handleClosenessChange} style={{ opacity: 0.5 }} />
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Category.svg" style={{ opacity: 0.5 }}></IconLandingPage>
+          Category:
       </Title>
-      <Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
           <InputFormatting type="text" onChange={props.handleCategoryChange} />
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Industry.svg" style={{opacity: 0.5}}></IconLandingPage>
-        Industry:
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Industry.svg" style={{ opacity: 0.5 }}></IconLandingPage>
+          Industry:
       </Title>
-      <Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
           <InputFormatting type="text" onChange={props.handleIndustryChange} />
-      </Field>
-      <Title>
-      <IconLandingPage type="image" src="./icons/Conversation.svg"></IconLandingPage>
-        Last Spoke:
+        </Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Title>
+          <IconLandingPage type="image" src="./icons/Conversation.svg"></IconLandingPage>
+          Last Spoke:
       </Title>
-      <Field>
+      </FieldLayout>
+      <FieldLayout>
+        <Field>
           <InputFormatting type="text" onChange={props.handleLastSpokeChange} />
-      </Field>
-      <Button onClick={props.handleContactFormSubmit}>Create</Button>
+        </Field>
+      </FieldLayout>
+      <Controls>
+        <Button onClick = {props.handleCloseContactForm} style={{ backgroundColor: "#FA6400" }}>Cancel</Button>
+        <Button onClick={props.handleContactFormSubmit} style={{ backgroundColor: "#0091FF" }}>Create</Button>
+      </Controls>
     </FormContainer>
   </ContactFormLayout>
 )

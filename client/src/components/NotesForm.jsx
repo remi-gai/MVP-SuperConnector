@@ -6,14 +6,17 @@ const CloseButtonNotesForm = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    margin-top: -70px;
+    margin-left: -30px;
 `
 const NotesFormLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 800px;
-  height: 800px;
-  background-color: rgba(238, 238, 238, 1);
+  justify-content: center;
+  width: 600px;
+  height: 440px;
+  background-color: white;
   opacity: 1;
   color: hsl(0,0%,30%);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -24,8 +27,14 @@ const NotesFormLayout = styled.div`
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 400px;
+  justify-content: center;
+  align-items: center;
+  width: 440px;
+  color: hsl(0,0%,30%);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border-radius: 10px;
+  background-color: rgba(238, 238, 238, 1);
+  height: 300px;
 `
 const InputFormatting = styled.input`
   border-radius: 3px;
@@ -37,8 +46,8 @@ const InputFormatting = styled.input`
 `
 
 const Title = styled.div`
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,7 +65,8 @@ const Button = styled.div`
   padding: 0 12px 0 12px;
   font-size: .750rem;
   border-radius: 4px;
-  margin: 5px;
+  margin-top: 5px;
+  width: 40px;
   cursor: pointer;
 
   &:hover {
@@ -64,7 +74,7 @@ const Button = styled.div`
   }
 `
 const Field = styled.div`
-  margin: 6px;
+margin-bottom: 5px;
 `
 const TextAreaFormatting = styled.textarea`
   border-radius: 3px;
@@ -82,26 +92,47 @@ const IconLandingPage = styled.input`
   opacity: 0.8;
 `
 
+const FieldLayout = styled.div`
+  width: 400px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+`
+
+const Controls = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+`
+
 let NotesForm = (props) => (
   <NotesFormLayout>
     <CloseButtonNotesForm onClick={props.handleCloseMeetingNotes}>
-      X
+      x
     </CloseButtonNotesForm><br></br>
-    <div>NEW MEETING NOTE</div><br></br>
     <FormContainer>
+      <FieldLayout>
       <Title>
       <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
         Full Name:</Title>
       <Field>
           <InputFormatting type="text" onChange={props.handleNameChangeNotesForm} />
       </Field>
+      </FieldLayout>
+      <FieldLayout>
       <Title>
       <IconLandingPage type="image" src="./icons/Notes.svg"></IconLandingPage>
         Meeting Notes:</Title>
+        </FieldLayout>
+        <FieldLayout>
       <Field>
           <TextAreaFormatting onChange={props.handleMeetingNotesChangeNotesForm} />
       </Field>
-      <Button onClick={props.handleNotesFormSubmit}>Create</Button>
+      <Controls>
+        <Button onClick = {props.handleCloseMeetingNotes} style={{ backgroundColor: "#FA6400" }}>Cancel</Button>
+        <Button onClick={props.handleNotesFormSubmit} style={{ backgroundColor: "#0091FF" }}>Create</Button>
+      </Controls>
+      </FieldLayout>
     </FormContainer>
   </NotesFormLayout>
 )
