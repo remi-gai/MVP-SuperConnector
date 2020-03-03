@@ -52,6 +52,9 @@ const Bold = styled.span`
 const Title = styled.div`
   margin-top: 3px;
   margin-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 const Button = styled.div`
@@ -92,6 +95,13 @@ const TextAreaFormatting = styled.div`
   background-color: white;
 `
 
+const IconLandingPage = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.8;
+`
+
 class MatchesList extends Component {
     constructor(props) {
         super(props);
@@ -123,7 +133,7 @@ class MatchesList extends Component {
         return (
             <MatchesListLayout>
                 <CloseButtonMatchesList onClick={this.props.handleCloseMatchesList}>
-                    X Close
+                    X
         </CloseButtonMatchesList><br></br>
         <div>CONTACT MATCHES</div><br></br>
                 {this.props.matches.matchedKeywords.length} Matched Keyword(s): {JSON.stringify(this.props.matches.matchedKeywords)}
@@ -133,43 +143,63 @@ class MatchesList extends Component {
                 </NavigationBar>
                 <ContactColumnsLayout>
                     <ContactLeft>
-                        <Title>Full Name:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
+                            Full Name:</Title>
                         <Field>
                             {contactLeft.fullname}
                         </Field>
-                        <Title>Memo:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Memo.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Memo:</Title>
                         <Field>
                             {contactLeft.memo}
                         </Field>
-                        <Title>Position:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Position.svg"></IconLandingPage>
+                            Position:</Title>
                         <Field>
                             {contactLeft.position}
                         </Field>
-                        <Title>Company:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Company.svg"></IconLandingPage>
+                            Company:</Title>
                         <Field>
                             {contactLeft.company}
                         </Field>
-                        <Title>Location:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Location.svg"></IconLandingPage>
+                            Location:</Title>
                         <Field>
                             {contactLeft.location}
                         </Field>
-                        <Title>Closeness:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Temperature.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Temperature:</Title>
                         <Field>
                             {contactLeft.closeness}
                         </Field>
-                        <Title>Category:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Category.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Category:</Title>
                         <Field>
                             {contactLeft.category}
                         </Field>
-                        <Title>Industry:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Industry.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Industry:</Title>
                         <Field>
                             {contactLeft.industry}
                         </Field>
-                        <Title>Last Spoke:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Conversation.svg"></IconLandingPage>
+                            Last Spoke:</Title>
                         <Field>
                             {contactLeft.lastspoke}
                         </Field>
-                        <Title>Meeting Notes:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Notes.svg"></IconLandingPage>
+                            Meeting Notes:</Title>
                         <TextAreaFormatting>
                             {
                                 splitContactLeftNotes.map(word => {
@@ -188,43 +218,63 @@ class MatchesList extends Component {
                         </TextAreaFormatting>
                     </ContactLeft>
                     <ContactRight>
-                        <Title>Full Name:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
+                            Full Name:</Title>
                         <Field>
                             {contactRight.fullname}
                         </Field>
-                        <Title>Memo:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Memo.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Memo:</Title>
                         <Field>
                             {contactRight.memo}
                         </Field>
-                        <Title>Position:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Position.svg"></IconLandingPage>
+                            Position:</Title>
                         <Field>
                             {contactRight.position}
                         </Field>
-                        <Title>Company:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Company.svg"></IconLandingPage>
+                            Company:</Title>
                         <Field>
                             {contactRight.company}
                         </Field>
-                        <Title>Location:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Location.svg"></IconLandingPage>
+                            Location:</Title>
                         <Field>
                             {contactRight.location}
                         </Field>
-                        <Title>Closeness:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Temperature.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Temperature:</Title>
                         <Field>
                             {contactRight.closeness}
                         </Field>
-                        <Title>Category:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Category.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Category:</Title>
                         <Field>
                             {contactRight.category}
                         </Field>
-                        <Title>Industry:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Industry.svg" style={{opacity: 0.5}}></IconLandingPage>
+                            Industry:</Title>
                         <Field>
                             {contactRight.industry}
                         </Field>
-                        <Title>Last Spoke:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Conversation.svg"></IconLandingPage>
+                            Last Spoke:</Title>
                         <Field>
                             {contactRight.lastspoke}
                         </Field>
-                        <Title>Meeting Notes:</Title>
+                        <Title>
+                        <IconLandingPage type="image" src="./icons/Notes.svg"></IconLandingPage>
+                            Meeting Notes:</Title>
                         <TextAreaFormatting>
                             {
                                 splitContactRightNotes.map(word => {

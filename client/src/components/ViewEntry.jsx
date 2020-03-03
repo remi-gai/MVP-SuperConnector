@@ -31,6 +31,9 @@ const FormContainer = styled.div`
 const Title = styled.div`
   margin-top: 3px;
   margin-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 const Field = styled.div`
   display: flex;
@@ -43,47 +46,71 @@ const Field = styled.div`
   height: 20px;
   background-color: white;
 `
+const IconLandingPage = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.8;
+`
 
 let ViewEntry = (props) => (
     <ViewEntryLayout>
         <CloseButtonViewEntry onClick={props.handleCloseViewEntry}>
-            X Close
+            X
         </CloseButtonViewEntry><br></br>
         <div>VIEW CONTACT</div><br></br>
         <FormContainer>
-            <Title>Full Name:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
+                Full Name:</Title>
             <Field>
                 {props.currentEntry.fullname}
             </Field>
-            <Title>Memo:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Memo.svg" style={{opacity: 0.5}}></IconLandingPage>
+                Memo:</Title>
             <Field>
                 {props.currentEntry.memo}
             </Field>
-            <Title>Position:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Position.svg"></IconLandingPage>
+                Position:</Title>
             <Field>
                 {props.currentEntry.position}
             </Field>
-            <Title>Company:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Company.svg"></IconLandingPage>
+                Company:</Title>
             <Field>
                 {props.currentEntry.company}
             </Field>
-            <Title>Location:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Location.svg"></IconLandingPage>
+                Location:</Title>
             <Field>
                 {props.currentEntry.location}
             </Field>
-            <Title>Closeness:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Temperature.svg" style={{opacity: 0.5}}></IconLandingPage>
+                Temperature:</Title>
             <Field>
                 {props.currentEntry.closeness}
             </Field>
-            <Title>Category:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Category.svg" style={{opacity: 0.5}}></IconLandingPage>
+                Category:</Title>
             <Field>
                 {props.currentEntry.category}
             </Field>
-            <Title>Industry:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Industry.svg" style={{opacity: 0.5}}></IconLandingPage>
+                Industry:</Title>
             <Field>
                 {props.currentEntry.industry}
             </Field>
-            <Title>Last Spoke:</Title>
+            <Title>
+            <IconLandingPage type="image" src="./icons/Conversation.svg"></IconLandingPage>
+                Last Spoke:</Title>
             <Field>
                 {props.currentEntry.lastspoke}
             </Field><br></br>

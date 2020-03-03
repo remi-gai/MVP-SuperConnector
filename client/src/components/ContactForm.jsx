@@ -47,6 +47,9 @@ const TextAreaFormatting = styled.textarea`
 `
 
 const Title = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: 3px;
   margin-bottom: 3px;
 `
@@ -73,63 +76,78 @@ const Button = styled.div`
 const Field = styled.div`
   margin: 6px;
 `
+const IconLandingPage = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.8;
+`
 
 let ContactForm = (props) => (
   <ContactFormLayout>
     <CloseButtonContactForm onClick={props.handleCloseContactForm}>
-      X Close
+      X
     </CloseButtonContactForm><br></br>
     <div>NEW CONTACT</div><br></br>
     <FormContainer>
       <Title>
+      <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
         Full Name:
       </Title>
       <Field>
         <InputFormatting type="text" onChange={props.handleNameChange}/>
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Memo.svg" style={{opacity: 0.5}}></IconLandingPage>
         Memo:
       </Title>
       <Field>
           <TextAreaFormatting onChange={props.handleMemoChange} />
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Position.svg"></IconLandingPage>
         Position:
       </Title>
       <Field>
           <InputFormatting type="text" onChange={props.handlePositionChange} />
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Company.svg"></IconLandingPage>
         Company:
       </Title>
       <Field>
           <InputFormatting type="text" onChange={props.handleCompanyChange} />
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Location.svg"></IconLandingPage>
         Location:
       </Title>
       <Field>
           <InputFormatting type="text" onChange={props.handleLocationChange} />
       </Field>
       <Title>
-        Closeness:
+      <IconLandingPage type="image" src="./icons/Temperature.svg" style={{opacity: 0.5}}></IconLandingPage>
+        Temperature:
       </Title>
       <Field>
-          <InputFormatting type="text" onChange={props.handleClosenessChange} />
+          <InputFormatting type="text" onChange={props.handleClosenessChange} style={{opacity: 0.5}}/>
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Category.svg" style={{opacity: 0.5}}></IconLandingPage>
         Category:
       </Title>
       <Field>
           <InputFormatting type="text" onChange={props.handleCategoryChange} />
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Industry.svg" style={{opacity: 0.5}}></IconLandingPage>
         Industry:
       </Title>
       <Field>
           <InputFormatting type="text" onChange={props.handleIndustryChange} />
       </Field>
       <Title>
+      <IconLandingPage type="image" src="./icons/Conversation.svg"></IconLandingPage>
         Last Spoke:
       </Title>
       <Field>

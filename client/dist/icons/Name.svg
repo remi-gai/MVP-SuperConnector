@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#303C42;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<title>Business Cards_1</title>
+<g id="ID_Tag">
+	<g id="_Group_">
+		<g id="_Group_2">
+			<circle id="_Path_" class="st0" cx="7.5" cy="10.5" r="2" style="fill: none; stroke: #303C42; stroke-linecap: round; stroke-linejoin: round;"/>
+			<path id="_Path_2" class="st0" d="M7.5,14c-1.1,0.1-2.2,0.4-3.2,1c-0.5,0.3-0.8,0.9-0.8,1.6v0.3c0,0.3,0.2,0.6,0.6,0.7h6.9     c0.3,0,0.6-0.3,0.6-0.7v-0.3c0-0.6-0.3-1.2-0.8-1.6C9.7,14.4,8.6,14.1,7.5,14z" style="fill: none; stroke: #303C42; stroke-linecap: round; stroke-linejoin: round;"/>
+		</g>
+		<line id="_Path_3" class="st0" x1="14.5" y1="15.5" x2="20.5" y2="15.5" style="fill: none; stroke: #303C42; stroke-linecap: round; stroke-linejoin: round;"/>
+		<line id="_Path_4" class="st0" x1="20.5" y1="12.5" x2="12.5" y2="12.5" style="fill: none; stroke: #303C42; stroke-linecap: round; stroke-linejoin: round;"/>
+		<path id="_Path_5" class="st0" d="M10.5,5.5H2C1.2,5.5,0.5,6.2,0.5,7v12c0,0.8,0.7,1.5,1.5,1.5h20c0.8,0,1.5-0.7,1.5-1.5V7    c0-0.8-0.7-1.5-1.5-1.5h-8.5" style="fill: none; stroke: #303C42; stroke-linecap: round; stroke-linejoin: round;"/>
+		<path id="_Rectangle_" class="st0" d="M12,3.5L12,3.5c0.8,0,1.5,0.7,1.5,1.5v2.5l0,0h-3l0,0V5C10.5,4.2,11.2,3.5,12,3.5z" style="fill: none; stroke: #303C42; stroke-linecap: round; stroke-linejoin: round;"/>
+	</g>
+</g>
+
+	<metadata>
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+			<rdf:Description about="https://iconscout.com/legal#licenses" dc:title="name; id; tag; license; identity; office" dc:description="name; id; tag; license; identity; office" dc:publisher="Iconscout" dc:date="2017-02-12" dc:format="image/svg+xml" dc:language="en">
+				<dc:creator>
+					<rdf:Bag>
+						<rdf:li>Alpár - Etele Méder</rdf:li>
+					</rdf:Bag>
+				</dc:creator>
+			</rdf:Description>
+		</rdf:RDF>
+    </metadata></svg>

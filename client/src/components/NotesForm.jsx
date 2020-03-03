@@ -16,7 +16,6 @@ const NotesFormLayout = styled.div`
   background-color: rgba(238, 238, 238, 1);
   opacity: 1;
   color: hsl(0,0%,30%);
-  /* border: solid 1px black; */
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   border-radius: 10px;
   overflow-y: scroll;
@@ -40,6 +39,9 @@ const InputFormatting = styled.input`
 const Title = styled.div`
   margin-top: 3px;
   margin-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 const Button = styled.div`
@@ -73,18 +75,29 @@ const TextAreaFormatting = styled.textarea`
   height: 120px;
 `
 
+const IconLandingPage = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.8;
+`
+
 let NotesForm = (props) => (
   <NotesFormLayout>
     <CloseButtonNotesForm onClick={props.handleCloseMeetingNotes}>
-      X Close
+      X
     </CloseButtonNotesForm><br></br>
     <div>NEW MEETING NOTE</div><br></br>
     <FormContainer>
-      <Title>Full Name:</Title>
+      <Title>
+      <IconLandingPage type="image" src="./icons/Name.svg"></IconLandingPage>
+        Full Name:</Title>
       <Field>
           <InputFormatting type="text" onChange={props.handleNameChangeNotesForm} />
       </Field>
-      <Title>Meeting Notes:</Title>
+      <Title>
+      <IconLandingPage type="image" src="./icons/Notes.svg"></IconLandingPage>
+        Meeting Notes:</Title>
       <Field>
           <TextAreaFormatting onChange={props.handleMeetingNotesChangeNotesForm} />
       </Field>

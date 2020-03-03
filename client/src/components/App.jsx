@@ -30,6 +30,7 @@ const AppPage = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  overflow-x: scroll;
 `
 
 const Header = styled.div`
@@ -90,38 +91,49 @@ const PositionColumn = styled.div`
 `
 
 const ClosenessColumn = styled.div`
-  /* width: 100%; */
+  width: 100%;
   border-right: solid 1px hsl(202,10%,88%);
   border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const CategoryColumn = styled.div`
-  /* width: 100%; */
+  width: 100%;
   border-right: solid 1px hsl(202,10%,88%);
   border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const IndustryColumn = styled.div`
-  /* width: 100%; */
+  width: 100%;
   border-right: solid 1px hsl(202,10%,88%);
   border-bottom: solid 1px hsl(202,10%,88%);
 `
 const LocationColumn = styled.div`
-  /* width: 100%; */
+  width: 100%;
   border-right: solid 1px hsl(202,10%,88%);
   border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const LastSpokeColumn = styled.div`
-  /* width: 100%; */
+  width: 100%;
   border-right: solid 1px hsl(202,10%,88%);
   border-bottom: solid 1px hsl(202,10%,88%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const ColumnHeader = styled.div`
   font-weight: bold;
   background-color: #EEEE;
-  /* padding: 16px; */
+  padding: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+`
+const ColumnHeaderExpand = styled.div`
+  font-weight: bold;
+  background-color: #EEEE;
+  color: #EEEE;
+  padding: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
 `
@@ -367,7 +379,7 @@ class App extends Component {
         </NavigationBar>
         <ContactPage>
           <DetailsColumn>
-            <ColumnHeader>Details</ColumnHeader>
+            <ColumnHeaderExpand>-</ColumnHeaderExpand>
             {this.state.records.map((record, index) => <DetailsEntry index={index} key={index} handleSelectEntry={this.handleSelectEntry.bind(this)} />)}
           </DetailsColumn >
           <FullNameColumn>
