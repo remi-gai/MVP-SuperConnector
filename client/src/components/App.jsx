@@ -44,61 +44,86 @@ const Header = styled.div`
 `
 const NavigationBar = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   background-color: white;
-  height: 40px;
+`
+
+const Controls = styled.div`
+  margin-top: -20px;
+  display: flex;
+  flex-direction: row;
 `
 
 const ContactPage = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   background-color: white;
 `
 const DetailsColumn = styled.div`
-  border: solid 1px black;
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const FullNameColumn = styled.div`
-  border: solid 1px black;
+  width: 100%;
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const MemoColumn = styled.div`
-  border: solid 1px black;
+  width: 100%;
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const CompanyColumn = styled.div`
-  border: solid 1px black;
+  width: 100%;
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const PositionColumn = styled.div`
-  border: solid 1px black;
+  width: 100%; 
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const ClosenessColumn = styled.div`
-  border: solid 1px black;
+  /* width: 100%; */
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const CategoryColumn = styled.div`
-  border: solid 1px black;
+  /* width: 100%; */
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const IndustryColumn = styled.div`
-  border: solid 1px black;
+  /* width: 100%; */
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 const LocationColumn = styled.div`
-  border: solid 1px black;
+  /* width: 100%; */
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const LastSpokeColumn = styled.div`
-  border: solid 1px black;
+  /* width: 100%; */
+  border-right: solid 1px hsl(202,10%,88%);
+  border-bottom: solid 1px hsl(202,10%,88%);
 `
 
 const ColumnHeader = styled.div`
   font-weight: bold;
   background-color: #EEEE;
+  /* padding: 16px; */
+  padding-top: 8px;
+  padding-bottom: 8px;
 `
 
 const ContactsBox = styled.div`
@@ -123,13 +148,40 @@ const Button = styled.div`
   background-color: #18AA8E;
   color: white;
   height: 20px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0,0,0,.12);
+  font-weight: 500;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0 12px 0 12px;
   font-size: .750rem;
   border-radius: 4px;
   margin: 5px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.90;
+  }
+`
+
+const MatchCount = styled.div`
+  background-color: #0091FF;
+  color: white;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+  font-size: .750rem;
+  height: 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;  
+  align-items: center;
+  width: 60px;
+  margin: 5px;
+  cursor: pointer;
+`
+
+const MatchControls = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
 class App extends Component {
@@ -249,7 +301,9 @@ class App extends Component {
   }
 
   handleMatchesModal() {
-    this.setState({ matchesModal: !this.state.matchesModal });
+    if (this.state.matches.length !== 0) {
+      this.setState({ matchesModal: !this.state.matchesModal });
+    }
   }
 
   handleMeetingNotesModal() {
@@ -300,10 +354,16 @@ class App extends Component {
           <ContactsBox>Contacts</ContactsBox>
         </Separator>
         <NavigationBar>
-          <Button onClick={this.handleContactFormModal.bind(this)}>Contact +</Button>
-          <Button onClick={this.handleMeetingNotesModal.bind(this)}>Notes +</Button>
-          <Button onClick={this.generateMatches.bind(this)}>Match!</Button>
-          <Button onClick={this.handleMatchesModal.bind(this)}>View</Button>
+          <MatchControls>
+            <MatchCount onClick={this.handleMatchesModal.bind(this)}>
+              {this.state.matches.length + ' ' + "Matches"}
+            </MatchCount>
+            <Button onClick={this.generateMatches.bind(this)} style={{backgroundColor: '#FA6400'}}>Match!</Button>
+          </MatchControls><br></br>
+          <Controls>
+            <Button onClick={this.handleContactFormModal.bind(this)}>Contact +</Button>
+            <Button onClick={this.handleMeetingNotesModal.bind(this)}>Notes +</Button>
+          </Controls>
         </NavigationBar>
         <ContactPage>
           <DetailsColumn>

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const viewEntryRoot = document.getElementById('app-entry');
 
 const ViewEntryModalBackground = styled.div`
+  background-color: rgba(0,0,0,0.2);
   position: fixed;
   height: 100%;
   width: 100%;

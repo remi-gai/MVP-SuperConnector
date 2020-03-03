@@ -1,10 +1,16 @@
 import React from 'react';
 import styled, { ThemeConsumer } from 'styled-components';
 
+const CompanyEntryStyling = styled.div`
+    padding: 5px;
+    border-bottom: solid 1px hsl(202,10%,88%);
+    font-size: 14px;
+`
+
 let CompanyEntry = (props) => (
-    <div>
+    <CompanyEntryStyling>
         {props.company}
-    </div>
+    </CompanyEntryStyling>
 );
 
 export default CompanyEntry;

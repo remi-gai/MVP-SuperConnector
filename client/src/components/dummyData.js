@@ -4,8 +4,8 @@ contacts:
     {
         fullname: 'Joe Yu',
         memo: 'Met during a blockchain conference event in SF',
-        position: 'investment associate',
-        company: '8dcap',
+        position: 'Investment Partner',
+        company: 'Blockchain Cap',
         location: 'San Francisco',
         closeness: 'High',
         category: 'investor',
