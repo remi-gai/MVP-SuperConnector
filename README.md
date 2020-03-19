@@ -3,7 +3,7 @@ SuperConnector is an algorithm powered CRM that allows you to store your contact
 
 ![](superConnector.gif)
 
-This MVP project was designed and built under 72 hours, and represents the bare-bone concepts. You can find the [full video demo here](https://www.youtube.com/watch?v=ulhKXHfgbMw).
+This MVP project was designed and built under 72 hours to illustrate the bare-bone concept. You can find the [full video demo here](https://www.youtube.com/watch?v=ulhKXHfgbMw).
 
 ## Getting Started
 Prerequisites: Node 6 or above
