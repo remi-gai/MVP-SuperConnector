@@ -19,7 +19,7 @@ npm run react-dev
 npm start
 ```
 
-Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
+Then open [http://localhost:3000/](http://localhost:3000/) to see the app.<br>
 
 ## Built With
 * React 16
