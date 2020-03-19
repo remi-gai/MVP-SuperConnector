@@ -1,8 +1,9 @@
 # SuperConnector MVP
 SuperConnector is an algorithm powered CRM that allows you to store your contacts and meetings notes. SuperConnector can generate matches among your contacts based on similar interests, allowing you to make meaningful introductions and foster collaborative opportunities.
 
+![Alt Text] (https://gph.is/g/ZnKJBYB)
 
-This MVP project was designed and built under 72 hours, and represents the bare-bone concepts. You can find the [full video demo here](https://www.youtube.com/watch?v=ulhKXHfgbMw)
+This MVP project was designed and built under 72 hours, and represents the bare-bone concepts. You can find the [full video demo here](https://www.youtube.com/watch?v=ulhKXHfgbMw).
 
 ## Getting Started
 Prerequisites: Node 6 or above
